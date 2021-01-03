@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -17,15 +17,49 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import {NavigationContainer} from '@react-navigation/native';
-import {AuthStackScreen} from './Screens/Navigation/Navigation';
+import {createStackNavigator} from '@react-navigation/stack';
+
+import Home from './Screens/Home';
+import SignUp from './Screens/Auth/Signup';
+import Login from './Screens/Auth/Login';
+import GoogleAuth from './Screens/Auth/GoogleAuth';
+
+const Stack = createStackNavigator();
 
 const App = () => {
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
   return (
-    <>
-      <NavigationContainer>
-        <AuthStackScreen />
-      </NavigationContainer>
-    </>
+    <NavigationContainer>
+      <Stack.Navigator>
+        {user ? (
+          <Stack.Screen
+            options={{headerShown: false, headerTitleAlign: 'center'}}
+            name="Home"
+            component={Home}
+          />
+        ) : (
+          <>
+            <Stack.Screen
+              options={{headerShown: false}}
+              name="Login"
+              component={Login}
+            />
+            <Stack.Screen
+              options={{headerTitleAlign: 'center', title: 'Sign Up'}}
+              name="Signup"
+              component={SignUp}
+            />
+
+            <Stack.Screen
+              options={{headerTitleAlign: 'center', title: 'Google Sign Up'}}
+              name="GoogleAuth"
+              component={GoogleAuth}
+            />
+          </>
+        )}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 

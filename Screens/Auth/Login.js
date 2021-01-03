@@ -13,7 +13,7 @@ function Login({navigation}) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.logo}>MY APP</Text>
+      <Text style={styles.logo}>Bruh App</Text>
       <View style={styles.logInputView}>
         <TextInput
           style={styles.inputText}
@@ -45,7 +45,7 @@ function Login({navigation}) {
 
       <View style={styles.signupBtn}>
         <Text>Dont have an account? </Text>
-        <TouchableOpacity onPress={() => navigation.push('GoogleSignup')}>
+        <TouchableOpacity onPress={() => navigation.push('GoogleAuth')}>
           <Text style={styles.signupText}>Sign Up</Text>
         </TouchableOpacity>
       </View>
