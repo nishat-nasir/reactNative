@@ -9,11 +9,11 @@ GoogleSignin.configure({
     '577201226409-d55rar4vbukj68mp4b6910fem69cg4bh.apps.googleusercontent.com',
 });
 
-function GoogleAuth() {
+function GoogleAuth({navigation}) {
   async function onGoogleButtonPress() {
     // Get the users ID token
     const {idToken} = await GoogleSignin.signIn();
-    console.log('mytoken' + idToken);
+    console.log('mytoken' + '  ' + idToken + 'finish token');
 
     // Create a Google credential with the token
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
@@ -22,12 +22,7 @@ function GoogleAuth() {
     return auth().signInWithCredential(googleCredential);
   }
   return (
-    <Button
-      title="Google Sign-In"
-      onPress={() =>
-        onGoogleButtonPress().then(() => console.log('Signed in with Google!'))
-      }
-    />
+    <Button title="Google Sign-In" onPress={() => onGoogleButtonPress()} />
   );
 }
 

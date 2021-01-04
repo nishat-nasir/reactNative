@@ -13,6 +13,7 @@ const Home = () => {
           style={{alignItems: 'center'}}
         />
       </Appbar.Header>
+      <Text>Home</Text>
     </View>
   );
 };
